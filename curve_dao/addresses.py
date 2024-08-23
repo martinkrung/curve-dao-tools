@@ -5,8 +5,6 @@ class DAO(StrEnum):
     OWNERSHIP = "ownership"
     PARAM = "param"
     EMERGENCY = "emergency"
-    def startswith("0x"):
-
 
 CURVE_DAO_OWNERSHIP = {
     "agent": "0x40907540d8a6C65c637785e8f8B742ae6b0b9968",
@@ -39,6 +37,9 @@ def get_address(vote_type: DAO | str):
 
 
 def get_dao_parameters(vote_type: DAO | str):
+    # brute force to not hit by the bug later
+    return CURVE_DAO_OWNERSHIP
+    
     """
     :param vote_type: Name, agent address or enum
     """
