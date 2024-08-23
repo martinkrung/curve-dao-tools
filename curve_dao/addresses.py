@@ -5,6 +5,7 @@ class DAO(StrEnum):
     OWNERSHIP = "ownership"
     PARAM = "param"
     EMERGENCY = "emergency"
+    def startswith("0x"):
 
 
 CURVE_DAO_OWNERSHIP = {
@@ -41,9 +42,6 @@ def get_dao_parameters(vote_type: DAO | str):
     """
     :param vote_type: Name, agent address or enum
     """
-    if vote_type.startswith("0x"):
-        # {agent address: enum}
-        vote_type = {get_dao_parameters(dao)["agent"]: dao for dao in DAO}[vote_type]
     match DAO(vote_type):
         case DAO.OWNERSHIP:
             return CURVE_DAO_OWNERSHIP
@@ -51,3 +49,6 @@ def get_dao_parameters(vote_type: DAO | str):
             return CURVE_DAO_PARAM
         case DAO.EMERGENCY:
             return EMERGENCY_DAO
+    if vote_type.startswith("0x"):
+        # {agent address: enum}
+        vote_type = {get_dao_parameters(dao)["agent"]: dao for dao in DAO}[vote_type]
